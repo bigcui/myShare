@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+
+
+    <title>demo</title>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <style type="text/css">
+        body {
+            font-size: 14px;
+            padding: 30px;
+        }
+
+        .pure-g > div {
+            margin: 0.25em 0;
+        }
+
+        legend {
+            font-size: 16px;
+            line-height: 1.75em;
+            font-weight: bold;
+        }
+
+        #moplusInfo, #sinfo {
+            word-break: break-all;
+        }
+
+        .console-log-div {
+            width: 95% !important;
+            background-color: #efefef;
+        }
+
+        #log {
+            margin: 10px 0px;
+            display: block;
+            white-space: pre;
+            font-family: monospace;
+        }
+
+        #log:before {
+            content: "log javascript:";
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+<div class="pure-form pure-form-stacked">
+    <fieldset>
+        <legend>框外调起</legend>
+
+        <div class="pure-g pure-g-1">
+            <div class="pure-u-1-1">
+                <button class="pure-button pure-button-primary" tabindex="1">添加卡片</button>
+            </div>
+
+        </div>
+        <canvas id="myCanvas" width="800" height="600">
+            您的浏览器不支持canvas！
+        </canvas>
+        <script>
+            var canvas = document.getElementById('myCanvas');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+                var img = new Image();
+                img.src="ArianaGrande.jpg"
+                img.onload = function() {
+                    if (img.width != canvas.width)
+                        canvas.width = img.width;
+                    if (img.height != canvas.height)
+                        canvas.height = img.height;
+
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);//在给定的矩形内清除指定的像素
+                    ctx.drawImage(img, 0, 0); // 设置图像对象，以及它在画布上的位置
+                };
+                //img.src = "tree.gif";
+            }
+            </script>
+    </fieldset>
+
+</div>
+<script>
+
+</script>
+</body>
+</html>

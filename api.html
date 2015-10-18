@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title></title>
+    <style>
+        *{margin:0;padding: 0;}
+        body{
+            padding: 20px;
+        }
+       h1 {
+            border-radius: 15px;
+            background-color: #F4D9B6;
+        }
+        h1 .icon-title {
+            display: inline-block;
+            background: url(tree.gif) no-repeat;
+            height: 30px;
+            width: 26px;
+        }
+    </style>
+</head>
+<body>
+<div id="topics">
+    <div class="post">
+        <h1 class="postTitle">
+            <a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/xiyangbaixue/p/4106185.html">HTML5标签canvas图像处理</a>
+        </h1>
+        <div class="clear"></div>
+        <div class="postBody">
+            <div id="cnblogs_post_body"><h1><i class="icon-title"></i>摘要：</h1>
+                <p>&nbsp;　　canvas可以读取图片后，使用drawImage方法在画布内进行重绘。本文介绍canvas的图像处理</p>
+                <h1><i class="icon-title"></i>drawImage</h1>
+                <p>　　drawImage() 方法在画布上绘制图像、画布或视频。drawImage() 方法也能够绘制图像的某些部分，以及/或者增加或减少图像的尺寸。</p>
+                <p><strong>语法</strong></p>
+                <p>　　在画布上定位图像：<br>　　　　context.drawImage(img,x,y);</p>
+                <p>　　在画布上定位图像，并规定图像的宽度和高度：</p>
+                <p>　　　　context.drawImage(img,x,y,width,height);</p>
+                <p>　　剪切图像，并在画布上定位被剪切的部分：</p>
+                <p>　　　　context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);</p>
+                <p><strong>参数</strong></p>
+                <p>img&nbsp;&nbsp;规定要使用的图像、画布或视频。</p>
+                <p>sx&nbsp;&nbsp;可选。开始剪切的&nbsp;x&nbsp;坐标位置。</p>
+                <p>sy&nbsp;&nbsp;可选。开始剪切的&nbsp;y&nbsp;坐标位置。</p>
+                <p>swidth&nbsp;&nbsp;可选。被剪切图像的宽度。</p>
+                <p>sheight&nbsp;&nbsp;可选。被剪切图像的高度。</p>
+                <p>x&nbsp;&nbsp;在画布上放置图像的&nbsp;x&nbsp;坐标位置。</p>
+                <p>y&nbsp;&nbsp;在画布上放置图像的&nbsp;y&nbsp;坐标位置。</p>
+                <p>width&nbsp;&nbsp;可选。要使用的图像的宽度。（伸展或缩小图像）</p>
+                <p>height&nbsp;&nbsp;可选。要使用的图像的高度。（伸展或缩小图像）</p>
+                <div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">canvas </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="myCanvas"</span><span style="color: #ff0000;"> width</span><span style="color: #0000ff;">="800"</span><span style="color: #ff0000;"> height</span><span style="color: #0000ff;">="600"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 2</span> <span style="color: #000000;">        您的浏览器不支持canvas！
+</span><span style="color: #008080;"> 3</span>     <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">canvas</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 4</span>     <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 5</span>         <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> canvas </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> document.getElementById(</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">myCanvas</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">);
+</span><span style="color: #008080;"> 6</span>         <span style="background-color: #f5f5f5; color: #0000ff;">if</span><span style="background-color: #f5f5f5; color: #000000;"> (canvas.getContext) {
+</span><span style="color: #008080;"> 7</span>             <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> ctx </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> canvas.getContext(</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">2d</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">);
+</span><span style="color: #008080;"> 8</span>             <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> img </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> Image();
+</span><span style="color: #008080;"> 9</span> <span style="background-color: #f5f5f5; color: #000000;">            img.onload </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">function</span><span style="background-color: #f5f5f5; color: #000000;">() {
+</span><span style="color: #008080;">10</span>                 <span style="background-color: #f5f5f5; color: #0000ff;">if</span><span style="background-color: #f5f5f5; color: #000000;"> (img.width </span><span style="background-color: #f5f5f5; color: #000000;">!=</span><span style="background-color: #f5f5f5; color: #000000;"> canvas.width)
+</span><span style="color: #008080;">11</span> <span style="background-color: #f5f5f5; color: #000000;">                        canvas.width </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> img.width;
+</span><span style="color: #008080;">12</span>                     <span style="background-color: #f5f5f5; color: #0000ff;">if</span><span style="background-color: #f5f5f5; color: #000000;"> (img.height </span><span style="background-color: #f5f5f5; color: #000000;">!=</span><span style="background-color: #f5f5f5; color: #000000;"> canvas.height)
+</span><span style="color: #008080;">13</span> <span style="background-color: #f5f5f5; color: #000000;">                        canvas.height </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> img.height;
+</span><span style="color: #008080;">14</span>
+<span style="color: #008080;">15</span> <span style="background-color: #f5f5f5; color: #000000;">                    ctx.clearRect(</span><span style="background-color: #f5f5f5; color: #000000;">0</span><span style="background-color: #f5f5f5; color: #000000;">, </span><span style="background-color: #f5f5f5; color: #000000;">0</span><span style="background-color: #f5f5f5; color: #000000;">, canvas.width, canvas.height);
+</span><span style="color: #008080;">16</span> <span style="background-color: #f5f5f5; color: #000000;">                    ctx.drawImage(img, </span><span style="background-color: #f5f5f5; color: #000000;">0</span><span style="background-color: #f5f5f5; color: #000000;">, </span><span style="background-color: #f5f5f5; color: #000000;">0</span><span style="background-color: #f5f5f5; color: #000000;">); // <span style="color: #339966;">设置图像对象，以及它在画布上的位置
+</span></span><span style="color: #008080;">17</span> <span style="background-color: #f5f5f5; color: #000000;">            };
+</span><span style="color: #008080;">18</span> <span style="background-color: #f5f5f5; color: #000000;">            img.src </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">tree.gif</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+<span style="color: #008080;">19</span> <span style="background-color: #f5f5f5; color: #000000;">        }
+</span><span style="color: #008080;">20</span>     <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span></pre>
+                    <div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></span></div></div>
+                <p>&nbsp;</p>
+                <p><strong>注意：</strong>drawImage方法只能在图像完全载入后才能调用</p>
+                <h1><i class="icon-title"></i>getImageData与putImageData</h1>
+                <p>　　getImageData() 方法返回 ImageData 对象，该对象拷贝了画布指定矩形的像素数据。putImageData() 方法将图像数据（从指定的 ImageData 对象）放回画布上。</p>
+                <p>getImageData() 方法返回 ImageData 对象，该对象拷贝了画布指定矩形的像素数据。</p>
+                <p>对于 ImageData 对象中的每个像素，都存在着四方面的信息，即 RGBA 值：</p>
+                <ul>
+                    <li>R - 红色 (0-255)</li>
+                    <li>G - 绿色 (0-255)</li>
+                    <li>B - 蓝色 (0-255)</li>
+                    <li>A - alpha 通道 (0-255; 0 是透明的，255 是完全可见的)</li>
+                </ul>
+                <p>color/alpha 以数组形式存在，并存储于 ImageData 对象的&nbsp;data&nbsp;属性中。</p>
+                <p><strong>语法</strong></p>
+                <p>　　context.getImageData(x,y,width,height);</p>
+                <p>　　context.putImageData(imgData,x,y,dirtyX,dirtyY,dirtyWidth,dirtyHeight);</p>
+                <p><strong>参数</strong></p>
+                <p>x&nbsp;&nbsp;开始复制的左上角位置的&nbsp;x&nbsp;坐标。</p>
+                <p>y&nbsp;&nbsp;开始复制的左上角位置的&nbsp;y&nbsp;坐标。</p>
+                <p>width&nbsp;&nbsp;将要复制的矩形区域的宽度。</p>
+                <p>height&nbsp;&nbsp;将要复制的矩形区域的高度。</p>
+                <p>imgData&nbsp;&nbsp;规定要放回画布的&nbsp;ImageData&nbsp;对象。</p>
+                <p>x&nbsp;&nbsp;ImageData&nbsp;对象左上角的&nbsp;x&nbsp;坐标，以像素计。</p>
+                <p>y&nbsp;&nbsp;ImageData&nbsp;对象左上角的&nbsp;y&nbsp;坐标，以像素计。</p>
+                <p>dirtyX&nbsp;&nbsp;可选。水平值（x），以像素计，在画布上放置图像的位置。</p>
+                <p>dirtyY&nbsp;&nbsp;可选。水平值（y），以像素计，在画布上放置图像的位置。</p>
+                <p>dirtyWidth&nbsp;&nbsp;可选。在画布上绘制图像所使用的宽度。</p>
+                <p>dirtyHeight&nbsp;&nbsp;可选。在画布上绘制图像所使用的高度。</p>
+                <div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">canvas </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="myCanvas"</span><span style="color: #ff0000;"> width</span><span style="color: #0000ff;">="800"</span><span style="color: #ff0000;"> height</span><span style="color: #0000ff;">="600"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 2</span> <span style="color: #000000;">        您的浏览器不支持canvas！
+</span><span style="color: #008080;"> 3</span>     <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">canvas</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 4</span>     <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 5</span>         <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> c</span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;">document.getElementById(</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">myCanvas</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">);
+</span><span style="color: #008080;"> 6</span>         <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> ctx</span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;">c.getContext(</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">2d</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">);
+</span><span style="color: #008080;"> 7</span> <span style="background-color: #f5f5f5; color: #000000;">        ctx.fillStyle</span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">red</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">;
+</span><span style="color: #008080;"> 8</span> <span style="background-color: #f5f5f5; color: #000000;">        ctx.fillRect(</span><span style="background-color: #f5f5f5; color: #000000;">10</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">10</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">50</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">50</span><span style="background-color: #f5f5f5; color: #000000;">);
+</span><span style="color: #008080;"> 9</span>
+<span style="color: #008080;">10</span>         <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> imgData</span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;">ctx.getImageData(</span><span style="background-color: #f5f5f5; color: #000000;">30</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">30</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">50</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">50</span><span style="background-color: #f5f5f5; color: #000000;">);
+</span><span style="color: #008080;">11</span> <span style="background-color: #f5f5f5; color: #000000;">        red</span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;">imgData.data[</span><span style="background-color: #f5f5f5; color: #000000;">0</span><span style="background-color: #f5f5f5; color: #000000;">];
+</span><span style="color: #008080;">12</span> <span style="background-color: #f5f5f5; color: #000000;">        green</span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;">imgData.data[</span><span style="background-color: #f5f5f5; color: #000000;">1</span><span style="background-color: #f5f5f5; color: #000000;">];
+</span><span style="color: #008080;">13</span> <span style="background-color: #f5f5f5; color: #000000;">        blue</span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;">imgData.data[</span><span style="background-color: #f5f5f5; color: #000000;">2</span><span style="background-color: #f5f5f5; color: #000000;">];
+</span><span style="color: #008080;">14</span> <span style="background-color: #f5f5f5; color: #000000;">        alpha</span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;">imgData.data[</span><span style="background-color: #f5f5f5; color: #000000;">3</span><span style="background-color: #f5f5f5; color: #000000;">];
+</span><span style="color: #008080;">15</span>     <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span></pre>
+                    <div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></span></div></div>
+                <p>&nbsp;</p>
+                <h1><i class="icon-title"></i>&nbsp;toDataURL</h1>
+                <p>　　toDataURL()方法将canvas上的元素保存为图像。context.toDataURL()返回的是一串Base64编码的URL。</p>
+                <p><strong>语法</strong></p>
+                <p>　　context.toDataURL('canvas.png');</p>
+                <p><strong>参数</strong></p>
+                <p>　　canvas.png生成的图像</p>
+                <p>&nbsp;</p>
+                <h1><i class="icon-title"></i>save与restore</h1>
+                <p>　　save方法用于保存上下文环境，restore方法用于恢复到上一次保存的上下文环境，都没有参数。Canvas 状态是以堆(stack)的方式保存的，每一次调用 save 方法，当前的状态就会被推入堆中保存起来。会保存strokeStyle, fillStyle, globalAlpha, lineWidth, lineCap, lineJoin, miterLimit, shadowOffsetX, shadowOffsetY, shadowBlur, shadowColor, globalCompositeOperation 的值。你可以调用任意多次 save 方法。每一次调用 restore 方法，上一个保存的状态就从堆中弹出，所有设定都恢复。</p>
+                <p><strong>语法：</strong></p>
+                <p>　　context.save();</p>
+                <p>　　context.restore();</p>
+                <div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">canvas </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="myCanvas"</span><span style="color: #ff0000;"> width</span><span style="color: #0000ff;">="800"</span><span style="color: #ff0000;"> height</span><span style="color: #0000ff;">="600"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 2</span> <span style="color: #000000;">        您的浏览器不支持canvas！
+</span><span style="color: #008080;"> 3</span>     <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">canvas</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 4</span>     <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 5</span> <span style="background-color: #f5f5f5; color: #000000;">        window.onload</span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #0000ff;">function</span><span style="background-color: #f5f5f5; color: #000000;">(){
+</span><span style="color: #008080;"> 6</span>              <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> ctx</span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;">document.getElementById(</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">myCanvas</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">).getContext(</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">2d</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">);
+</span><span style="color: #008080;"> 7</span> <span style="background-color: #f5f5f5; color: #000000;">             ctx.fillStyle </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">red</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">;
+</span><span style="color: #008080;"> 8</span> <span style="background-color: #f5f5f5; color: #000000;">             ctx.fillRect(</span><span style="background-color: #f5f5f5; color: #000000;">10</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">10</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">150</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">150</span><span style="background-color: #f5f5f5; color: #000000;">);
+</span><span style="color: #008080;"> 9</span>
+<span style="color: #008080;">10</span> <span style="background-color: #f5f5f5; color: #000000;">             ctx.save();
+</span><span style="color: #008080;">11</span> <span style="background-color: #f5f5f5; color: #000000;">             ctx.fillStyle</span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">green</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">;
+</span><span style="color: #008080;">12</span> <span style="background-color: #f5f5f5; color: #000000;">             ctx.fillRect(</span><span style="background-color: #f5f5f5; color: #000000;">30</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">30</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">110</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">110</span><span style="background-color: #f5f5f5; color: #000000;">);
+</span><span style="color: #008080;">13</span>
+<span style="color: #008080;">14</span> <span style="background-color: #f5f5f5; color: #000000;">             ctx.save();
+</span><span style="color: #008080;">15</span> <span style="background-color: #f5f5f5; color: #000000;">             ctx.fillStyle</span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">yellow</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">;
+</span><span style="color: #008080;">16</span> <span style="background-color: #f5f5f5; color: #000000;">             ctx.fillRect(</span><span style="background-color: #f5f5f5; color: #000000;">50</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">50</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">70</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">70</span><span style="background-color: #f5f5f5; color: #000000;">);
+</span><span style="color: #008080;">17</span> <span style="background-color: #f5f5f5; color: #000000;">             ctx.restore();</span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;">回到上一个状态,即 ctx.fillStyle="green";</span>
+<span style="color: #008080;">18</span> <span style="background-color: #f5f5f5; color: #000000;">             ctx.save();
+</span><span style="color: #008080;">19</span> <span style="background-color: #f5f5f5; color: #000000;">             ctx.fillRect(</span><span style="background-color: #f5f5f5; color: #000000;">70</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">70</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">30</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">30</span><span style="background-color: #f5f5f5; color: #000000;">);
+</span><span style="color: #008080;">20</span> <span style="background-color: #f5f5f5; color: #000000;">             ctx.restore();
+</span><span style="color: #008080;">21</span> <span style="background-color: #f5f5f5; color: #000000;">        }
+</span><span style="color: #008080;">22</span>     <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span></pre>
+                    <div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></span></div></div>
+                <p>&nbsp;</p>
+                <p><strong>效果</strong></p>
+                <p><img src="http://images.cnitblog.com/blog/582503/201411/241050164819275.png" alt=""></p>
+                <p>&nbsp;</p></div><div id="MySignature"></div>
+            <div class="clear"></div>
+
+
+
+        </div>
+         </div>
+    <script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=179271,cb_entryId=4106185,cb_blogApp=currentBlogApp,cb_blogUserGuid='25e02124-9b4d-e311-8d02-90b11c0b17d6',cb_entryCreatedDate='2014/11/24 10:53:00';loadViewCount(cb_entryId);</script>
+
+</div>
+</body>
+<script>
+
+    //参考：http://www.cnblogs.com/xiyangbaixue/p/4106185.html
+
+</script>
+</html>
