@@ -88,7 +88,7 @@
 			gray = r * 0.2126 + g * 0.7152 + b * 0.0722;
 			//overwriting the colordata array with grayscale values
 			//colordata[i] = colordata[i+1] = colordata[i+2] = gray;
-			
+
 			//text for ascii art.
 			//blackish = dense characters like "W", "@"
 			//whitish = light characters like "`", "."
@@ -109,7 +109,7 @@
             } else {
                 character = "@"; //almost black
             }
-			
+
 			//newlines and injection into dom
 			if (i !== 0 && (i / 4) % width === 0) {//if the pointer reaches end of pixel-line
 				ascii.appendChild(document.createTextNode(line));
@@ -118,7 +118,7 @@
 				//emptying line for the next row of pixels.
 				line = "";
 			}
-			
+
 			line += character;
 		}
     };

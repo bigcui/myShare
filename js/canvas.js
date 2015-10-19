@@ -1,15 +1,7 @@
 /**
  * Created by cuihonglei on 15/10/18.
  */
-/*
- *  This file is encoded in UTF-8 without BOM!!!
- *
- *  计算机艺术  第一次作业
- *  运行环境：支持HTML5的浏览器，Chrome、FireFox、IE10+
- *  注意：文件仅限在有效域名下访问，本地直接查看由于跨域问题将无法呈现效果
- *        如果没有本地服务器，可以查看我部署的样例：http://xsk.tehon.org/dev/zt/canvas/
- *  作者：11121675 肖世康
- */
+
 
 // 黑白二值化处理，转化为灰值后大于128的作为黑，小于的作为白
 function ex01() {
